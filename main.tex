@@ -4,7 +4,7 @@
 \usepackage[usenames,dvipsnames]{color}
 \usepackage{amsmath}
 \usepackage[english]{babel}
-\usepackage{amssymb}
+%\usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{epstopdf}
 \usepackage{lineno}
@@ -33,7 +33,7 @@
 
 \begin{abstract}
 We study the finite temperature Fermi-liquid to non-Fermi-liquid crossover in the 2D Hubbard model for a range of dopings using the self-consistent ladder dual fermion method.
- We consider relatively high temperatures where we identify a suppression of the density of states near the Fermi level caused by a quasi-antiferromagnetic behaviour that is itself characterized by a long, but finite, correlation length scale.  We perform fluctuation diagnostics to decompose the single-particle self energy into scattering $q$-vector and bosonic frequency contributions.  Within this framework we find that the key contributions to the single-particle self energy that give non-Fermi-liquid character, even at weak coupling, are caused by relatively sharp $q=(\pi,\pi)$ spin fluctuations and a subtle interplay of positive and negative bosonic contributions.
+ We consider relatively high temperatures where we identify a suppression of the density of states near the Fermi level caused by a quasi-antiferromagnetic behaviour that is itself characterized by a long, but finite, correlation length scale.  We perform fluctuation diagnostics to decompose the single-particle self energy into scattering $q$-vector and bosonic frequency contributions.  Within this framework we find that the key contributions to the single-particle self energy that give non-Fermi-liquid character, even at weak coupling, are caused by relatively sharp $q=(\pi,\pi)$ spin fluctuations, while the decomposition in the bosonic frequency channel shows a complicated dependence on the relative strengths of zero, positive and negative frequency contributions.  Finally, variation in density suggests that the tendency towards non-Fermi-liquid behavior is not substantially different for electron or hole doped systems.
 \end{abstract}
 
 \maketitle
@@ -42,7 +42,7 @@ We study the finite temperature Fermi-liquid to non-Fermi-liquid crossover in th
 \section{Introduction \label{sec:introduction}}
 Understanding the $T-U$ phase diagram of the 2D Hubbard model on a square lattice has been a key problem  in the field of strongly correlated electron systems that has driven numerical methods development.
 While the ground state of the half-filled model is expected to be an antiferromagnetic band insulator, the finite temperature phase diagram of both the half-filled and particle-hole asymmetric cases has been a topic of controversy.\cite{schafer:2015}
-Most recently, Simkovic et al. \cite{simkovic:2019, simkovic2017determinant} has shown that for at least one metric of Fermi-liquid behavior, the single-particle self energy\cite{park:2008},  the Fermi-liquid (FL) to non-fermi-liquid (nFL) crossover has an exponential onset in the T-U phase diagram. 
+Most recently, Simkovic et al. \cite{simkovic:2019, simkovic2017determinant} has shown that for at least one metric of Fermi-liquid behavior, the single-particle self energy\cite{park:2008},  the Fermi-liquid (FL) to non-fermi-liquid (nFL) crossover has an exponential onset in the T-U phase diagram consistent with a N\'eel temperature mean-field ansatz $T_N\propto e^{-b/\sqrt{U}}$. 
 This is in contrast to what has become the standard picture of the 2D Hubbard model phase diagram,\cite{park:2008} that there should be some set of critical values $U_{c1}$ and $U_{c2}$ across which properties such as double occupancy show hysteresis, an indication of a first order phase transition to an interaction driven Mott-insulator. 
 Calculations based on cluster extensions of dynamical mean-field theory (DCA, cDMFT), typically assume the system to be paramagnetic and suppress antiferromagnetic correlations during the self-consistency.  This is done under the very reasonable presumption that in the limit of infinite cluster size the Mermin-Wagner theorem would prevent a  second order phase transition to an antiferromagnetic state.  
 What was not expected is that antiferromagnetic spin-correlations with a finite correlation length scale could be sufficient to lead to a nFL state.  
@@ -51,10 +51,9 @@ Thus far there has been much conjecture regarding the role of these finite-range
 The question of precisely how these spin fluctuations cause a suppression of states near the Fermi level has not been answered.
 
 In order to address this problem, we employ a recent development due to  Gunnarsson et al.\cite{gunnarsson:2015}. Their primary insight, called fluctuation diagnostics, allows one to make use of two-particle vertex methods to decompose the single-particle self-energy into various basis representations and scattering channels.   The original work on 8-site DCA data suggested that contributions to the self-energy giving rise to a pseudogap were dominated by $q=(\pi,\pi)$ spin fluctuations. Further, they showed unequivocally that the physical process resulting in pseudogap physics in the 2D Hubbard model is best represented by spin excitations rather than in the charge or particle-particle channels, an observation supported by diagrammatic application of the same fluctuation diagnostics procedure.\cite{wu:2017} 
+To provide a complete picture of scattering vector contributions one requires a numerical method with high momentum resolution that can capture correlations both at short and long distance.  For this reason, we employ the method of dual fermions\cite{rubtsov:2008} (DF) within the self-consistent ladder approximation.\cite{opendf}   As an extension of the DMFT, the DF method has the advantage that it correctly captures both the short range correlations (through DMFT) and the long range correlations (via the duality transformation) and also can generate both single and two-particle quantities on an arbitrarily fine momentum grid with a roughly linear expense in resolution.  
 
-In this work, we utilize the power of the fluctuation diagnostics method to examine precisely how excitations in the spin channel cause suppression of states near the Fermi level ultimately resulting in a fermi-liquid (FL) to non-Fermi-liquid (nFL) crossover in the 2D Hubbard model.  We extract the imaginary part of the self energy and examine $\Delta \Sigma = Im\Sigma (i\omega_0) - Im\Sigma (i\omega_1)$ as a metric of FL/nFL behaviour.\cite{park:2008, simkovic:2019}  We examine weak, intermediate and strong interaction strengths at fixed temperature with nominal $t^\prime$ and subsequently dope the system to regain FL character. \cite{wu:2017,schafer:2015}  We then study in detail the low temperature weak coupling case, in order to first verify the existence of the nFL crossover at finite T for the half filled model\cite{simkovic:2019} and then comment precisely on the role of spin fluctuations in producing that specific nFL behaviour.
-
-To answer these questions, one requires a numerical method with high momentum resolution that can capture correlations both at short and long distance.  For this reason, we employ the method of dual fermions\cite{rubtsov:2008} (DF) within the self-consistent ladder approximation.\cite{opendf}   As an extension of the DMFT, the DF method has the advantage that it correctly captures both the short range correlations (through DMFT) and the long range correlations (via the duality transformation) and also can generate both single and two-particle quantities on an arbitrarily fine momentum grid with a roughly linear expense in resolution.  
+In this work, we utilize the power of the fluctuation diagnostics method within the DF framework to examine precisely how excitations in the spin channel cause suppression of states near the Fermi level ultimately resulting in a fermi-liquid (FL) to non-Fermi-liquid (nFL) crossover in the 2D Hubbard model.  We extract the imaginary part of the self energy and examine $\Delta \Sigma = Im\Sigma (i\omega_0) - Im\Sigma (i\omega_1)$ as a metric of FL/nFL behaviour.\cite{park:2008, simkovic:2019}  We examine weak, intermediate and strong interaction strengths at fixed temperature with nominal $t^\prime$ and subsequently dope the system to regain FL character. \cite{wu:2017,schafer:2015}  We then study in detail the low temperature weak coupling case, in order to first verify the existence of the nFL crossover at finite T for the half filled model\cite{simkovic:2019} and then comment precisely on the role of spin fluctuations in producing that specific nFL behaviour. We find that non-Fermi-liquid behavior arises almost entirely from $(\pi,\pi)$ spin-correlations, and as both a function of doping and temperature coincides with an increase in correlation length scale.  Further, we note that the extent of non-fermi liquid behavior is not strongly dependent upon electron or hole doping, but that the $q$-vector decompositions appear quite distinct.
 
 In section~\ref{sec:methods} we overview the applied numerical tools and theory, section~\ref{sec:results} presents our results and section~\ref{sec:conclusions} concludes our discussion.
 
@@ -76,13 +75,13 @@ $\epsilon_k=-2t\left[\cos(k_x)+\cos(k_y)\right]-4t^\prime \cos(k_x)\cos(k_y)$ wh
 
 
 \subsection{Ladder Dual-Fermions}
-In the dual-fermion formalism\cite{rubtsov:2008,opendf} one replaces the lattice problem with a lattice of Anderson impurity problems resulting in an action of the form
+In the dual-fermion formalism\cite{rubtsov:2008,opendf} one replaces the lattice problem with a lattice of coupled Anderson impurity problems resulting in an action of the form
 \begin{equation}
-    S[f,f^*]= \sum_{\omega k \sigma}g_\omega^{-2} \left((\Delta_\omega - \epsilon_k)^{-1}
-    +g_\omega\right) f^*_{\omega k \sigma} f_{\omega
+    S[f,f^*]= \sum_{\omega k \sigma}\text{g}_\omega^{-2} \left((\Delta_\omega - \epsilon_k)^{-1}
+    +\text{g}_\omega\right) f^*_{\omega k \sigma} f_{\omega
     k \sigma} + \sum_i V_i,
 \end{equation}
-with $V_i\equiv V[f^*_i,f_i]$, and where $g_w$ is the momentum independent impurity Green's function, and $\Delta_\omega$ is a hybridization function.  Unlike Eq.~(\ref{H}) which depends on electronic creation and annihilation operators, the dual-fermion action now depends on $f$ and $f^*$ which are dual operators obtained via a Hubbard-Stratonovich transformation.  
+with $V_i\equiv V[f^*_i,f_i]$, and where $\text{g}_w$ is the momentum independent Green's function of the Anderson impurity problem, and $\Delta_\omega$ is the hybridization function between the impurity and the bath.\cite{georges:1996,rubtsov:2008}  Unlike Eq.~(\ref{H}) which depends on electronic creation and annihilation operators, the dual-fermion action now depends on $f$ and $f^*$ which are dual operators obtained via a Hubbard-Stratonovich transformation.  
 
 In the dual space the interactions have become local (the sum over sites $i$ above) and are collected into the function $V_i$.  
 % $V_i$ is a function of dual-fermion operators $f^*_i$,$f_i$ but also of arbitrarily high order vertex functions 
@@ -91,9 +90,9 @@ In the dual space the interactions have become local (the sum over sites $i$ abo
 % f_{\omega_4}$. Further
 % Taylor series terms yield similar combinations including
 % $\gamma^{(n)}$ of higher orders.
-The mapping is formally exact and is simply an expansion as a function of  $g_w$ and the $n$-leg impurity vertex functions, $\gamma^{(n)}$. 
+The mapping is formally exact and is simply an expansion as a function of  $\text{g}_w$ and the $n$-leg impurity vertex functions, $\gamma^{(n)}$. 
 Correctly representing $V_i$ remains problematic due to the complexity of higher-leg vertex functions\cite{ribic:2017} and so we truncate the vertex at the level of 4-leg operators, $\gamma^{(4)}$.
-In this sense we have an approximate method to solve Hubbard-like models.   Where one would need to sum all diagrammatic contributions at all orders in $\gamma^{(4)}$.\cite{iskakov:2016,gukelberger:2017} Once the dual self energy, $\tilde{\Sigma}(k,\omega)$ is obtained, the lattice self energy is given by
+In this sense we have an approximate method to solve Hubbard-like models.   Where one would need to sum all diagrammatic contributions at all orders in $\gamma^{(4)}$.\cite{iskakov:2016,gukelberger:2017, rohringer:revmodphys} Once the dual self energy, $\tilde{\Sigma}(k,\omega)$ is obtained, the lattice self energy is given by
 \begin{equation}
 \Sigma(k,\omega)=\frac{\tilde{\Sigma}(k,\omega)}{1-g_{\omega}\tilde{\Sigma}(k,\omega) }+\Sigma^{DMFT}(\omega).
 \label{eqn:dualselfenergy}
@@ -108,7 +107,7 @@ Input DMFT solutions are obtained using a continuous time auxilliary field metho
 
 \subsection{Fluctuation Diagnostics from DF}
 
-The single particle self-energy can be constructed from the full two-particle vertex function in the spin basis, $F_{sp}$,\cite{Rohringer12} and the fully interacting Green's function $g(k,\omega)$ via
+The single particle self-energy can be constructed from the full two-particle vertex function in the spin basis, $F_{sp}$,\cite{Rohringer12} and the fully interacting lattice Green's function $g(k,\omega)$ (a function of both momentum and frequency) via
 
 \begin{equation}\label{eqn:fluct}
      \Sigma(k,\omega)= \frac{Un}{2}+ \frac{U}{\beta^2 N} \sum \limits_{\bar{\omega}^\prime ,\bar{\Omega}} F_{sp}^{\bar{\omega},\bar{\omega}^\prime,\bar{\Omega}} g(\bar{\omega}^\prime)g(\bar{\omega}^\prime +\bar{\Omega}) g(\bar{\omega}+\bar{\Omega})
@@ -118,7 +117,7 @@ As discussed in Ref.~\onlinecite{gunnarsson:2015} the basis choice of the full v
 
 We then probe the partial summation of the second term in Eq.~\eqref{eqn:fluct} for the spin channel.  This means we decompose the self energy into a more general $q$ and $\Omega$ dependent object
 \begin{equation}
-    \Sigma(k,\omega)= \sum\limits_{\bar{\Omega},\bar{\omega}^\prime} \Sigma_{sp}(\bar{\omega},\bar{\omega}^\prime, \bar{\Omega}).
+    \Sigma(\bar{\omega})= \sum\limits_{\bar{\Omega},\bar{\omega}^\prime} \Sigma_{sp}(\bar{\omega},\bar{\omega}^\prime, \bar{\Omega}).
 \end{equation}
 To assist with notation we drop the spin, `sp', subscript and suppress the explicit momentum $k$ argument in favour of a subscript to represent the self energy at the so-called nodal (N, $k=(\pi/2,\pi/2)$) and antinodal (AN, $k=(\pi,\pi)$) momenta.
 
@@ -130,10 +129,20 @@ One challenge with this form of decomposition is the high dimensionality of the 
 We will present partial summations over: scattering momenta, $x=q$ ;  positive, negative or all bosonic frequencies, $x= +\Omega, -\Omega, \Omega$ respectively; or over combinations of variables such as $x=(+\Omega, q)$ which represents summation over positive bosonic frequencies and all q-vectors. Also, we always sum explicitly over the internal primed fermionic elements $\bar{\omega}^\prime$ in order to reduce our deconstructed dimensionality which is convenient since $\bar{\omega}^\prime$ does not appear, for our notation, in either single particle self energies or two particle susceptibilities.
 
 Throughout we restrict our solutions of the two particle Green's function and associated vertex of the impurity problem to a truncated set of fermionic and bosonic frequencies, $\Omega= -32 \to 32$ and $\omega,\omega^\prime = -64 \to 63$ inclusive.  We have verified that this is a sufficiently large truncation to accurately reconstruct the  DMFT and DF self energies via Eq.~\eqref{eqn:fluct}.
-Further, we will examine the metric for FL/nFL behaviour $\Delta \Sigma_k= Im\Sigma_k(i\omega_0)-Im\Sigma_k(i\omega_1)$ for each decomposed  or partially summed channel, which we will abbreviate as $\Delta \Sigma _{k}^{(x)}$. 
+Further, we will examine the metric for FL/nFL behaviour $\Delta \Sigma_k= Im\Sigma_k(i\omega_0)-Im\Sigma_k(i\omega_1)$ for each decomposed  or partially summed channel, which we will abbreviate as $\Delta \Sigma _{k}^{(x)}$ as per Eq.~(\ref{eqn:sumnotation}). 
+
+
+\begin{figure}
+\centering
+    %\includegraphics[scale=0.5]{self_energy_U5}
+    \includegraphics[width=0.95\linewidth]{selfenergy_spectral.pdf}
+        \caption{\label{fig:selfedmft} Imaginary part of the self energy as a function of Matsubara index for the DF nodal (N) and antinodal (AN) results as well as the DMFT result on which DF is based for parameters $U/t=5.6$, $\beta t=5$, $t^\prime /t=-0.3$ and $\mu=0$.  Inset: Analytic continuation result for the spectral function, $A(\omega)$ for real frequency $\omega$.}
+\end{figure}
 
 
 \section{Results  \label{sec:results}}
+
+
 \subsection{Doping Dependent Crossover}
 As an illustrative example, in Fig.~\ref{fig:selfedmft} we present DF results at $U/t=5.6$, $t^\prime/t=-0.3$, $\mu=0$, $\beta t=5$ for the imaginary part of the self energy. The DMFT result (dashed-black) shows a tendency towards FL behaviour where the first Matsubara frequency has a higher value than the second ($\Delta \Sigma > 0$).  Shown in red and blue are results at the nodal and antinodal momenta respectively from the DF calculation which provides momentum dependence to the self-energy. 
 These results are in agreement with  DiagMC and DCA calculations from  Ref.~\onlinecite{wu:2017} for similar parameters.  We observe for these parameters the shift from FL to partial nFL behaviour indicated by the negative value of $\Delta \Sigma$ at the antinodal point, while the nodal point remains with $\Delta \Sigma >0$.
@@ -151,13 +160,6 @@ These observations at high temperature of a crossover with interaction strength 
 
 \begin{figure}
 \centering
-    %\includegraphics[scale=0.5]{self_energy_U5}
-    \includegraphics[width=0.95\linewidth]{selfenergy_spectral.pdf}
-        \caption{\label{fig:selfedmft} Imaginary part of the self energy as a function of Matsubara index for the DF nodal (N) and antinodal (AN) results as well as the DMFT result on which DF is based for parameters $U/t=5.6$, $\beta t=5$, $t^\prime /t=-0.3$ and $\mu=0$.  Inset: Analytic continuation result for the spectral function, $A(\omega)$ for real frequency $\omega$.}
-\end{figure}
-
-\begin{figure}
-\centering
     \includegraphics[width=0.95\linewidth]{deltasigma_all.pdf}
 \caption{ $\Delta \Sigma$ at the nodal and antinodal momenta as a function of density for various $U/t$ at $\beta t=5$ and $t^\prime /t=-0.3$.  \label{fig:deltasigmal}}
 \end{figure} 
@@ -170,8 +172,16 @@ These observations at high temperature of a crossover with interaction strength 
 \end{figure}
 
 To this end we consider the two-particle spin susceptibility\cite{hafermann:2008,chen:2017} from which we extract the correlation length as the half-width at half-max of $\chi_{sp}(q_x,q_y,i\Omega=0)$ near $(q_x,q_y)=(\pi,\pi)$.  We present this as a function of doping in Fig.~\ref{fig:corlengthdoping}.  By comparison to Fig.~\ref{fig:deltasigmal} we see the qualitative connection between the nFL and FL behavior in the self energy as a function of doping to the increase in spin-correlation length, $\xi$.  
-At this high temperature for $U/t=3$ the value of $\xi \lesssim 2$ lattice sites is quite small and comparing with Fig.~\ref{fig:deltasigmal} we see that $\Delta \Sigma$ is positive for all densities.  At $U/t=5.6$ and 8, $\xi$ has a much larger value for a range of dopings near $n=1$.  It seems that the increase of $\xi$ with doping coincides with a reduction of $\Delta \Sigma$ ultimately resulting in a change of sign.
+At this high temperature for $U/t=3$ the value of $\xi \lesssim 2$ lattice sites is quite small and comparing with Fig.~\ref{fig:deltasigmal} we see that $\Delta \Sigma$ is positive for all densities.  At $U/t=5.6$ and 8, $\xi$ has a much larger value for a range of dopings near $n=1$.  It seems that the increase of $\xi$ with doping coincides with a reduction of $\Delta \Sigma$ ultimately resulting in a change of sign.  Interestingly, at these high temperatures with modest $t^\prime$, the value of $\Delta \Sigma$ is not substantially distinct between hole or electron doping ($n<1$ and $n>1$ respectively).  The antinodal point shows tendency towards nFL behavior for both for electron and hole doped cases. 
 One might conclude from this that it is the tendency towards antiferromagnetic behavior that is driving the FL/nFL crossover.  At this stage, the connection is speculative and it is precisely this speculative conclusion we wish to resolve in the following section. 
+
+
+\begin{figure}
+\centering
+    \includegraphics[width=0.68\linewidth]{c_mu_0_sigma_AN_nu1.pdf}
+    \includegraphics[width=0.68\linewidth]{c_mu_0_sigma_node_nu1.pdf}
+\caption{ Imaginary part of the self energy for the antinodal (left) and nodal (right) momenta decomposed into the scattering $q=(q_x,q_y)$ contributions for the zeroth bosonic Matsubara freq for $U/t=5.6$, $\beta t =5$, $t^\prime /t=-0.3$, and $\mu=0$.\label{fig:qxqyomega0} }
+\end{figure} 
 
 \subsection{Fluctuation Diagnostics}
 Up to this point we have shown only single or two particle properties.  Next we bridge the gap using Eqns.~(\ref{eqn:fluct})$\to$(\ref{eqn:sumnotation}) and examine the decomposition of the single particle $\Delta\Sigma$ into the scattering momenta and frequency channels.
@@ -180,7 +190,7 @@ Similar to the results of Refs.~\onlinecite{gunnarsson:2015,wu:2017} we see a st
 We see that essentially all $q$-vector contributions to the self energy are negative, consistent with other work.\cite{andergassen:2019,gunnarsson:2015}
 In order for $\Delta \Sigma$ to change sign there must also be positive contributions.
 
-With this in mind we examine the behaviour of $Im\Sigma_k^{(\pm \Omega,q)}$ such that the total self energy is just the sum $Im\Sigma_k(\omega)=Im\Sigma_k^{(\Omega,q)}= Im\Sigma_k^{(+ \Omega,q)}+Im\Sigma_k^{(- \Omega,q)}$.  Results for each component are shown in Fig.~\ref{fig:posnegbose}.   Interestingly we observe that the positive bosonic contributions are primarily negative while the negative bosonic frequency contributions are primarily positive.   Deciding if $\Delta \Sigma$ is positive or negative rests then on a subtle interplay between these two components.  The $+\Omega$ and $-\Omega$ parts are nearly identical in magnitude but opposite in sign at low frequency.  The summation over negative bosonic frequencies ($-\Omega$) decays rapidly with frequency while the ($+\Omega$) summation decays slower. This is an element not mentioned in the original fluctuation diagnostics description.\cite{gunnarsson:2015} The result of this observation is that $\Delta \Sigma$ changes sign due to a subtle interplay of the $+\omega$ and $-\Omega$ terms.  
+With this in mind we examine the behaviour of the self energy decomposed into bosonic frequency contributions such that the total self energy is just the sum $Im\Sigma_k(\omega)=Im\Sigma_k^{(\Omega,q)}= Im\Sigma_k^{(+ \Omega,q)}+Im\Sigma_k^{(- \Omega,q)} + Im\Sigma_k^{(\Omega=0,q)}$.  Results for each component are shown in Fig.~\ref{fig:posnegbose}.   We find that the largest contributions to the self energy come from $\Omega=0$ which are negative for all $i\omega_n>0$ and also show a negative contribution to $\Delta \Sigma$.   The summations over positive and negative bosonic frequencies decay rapidly with fermionic frequency while the $\Omega=0$ contribution dominates the high frequency behavior.  We also observe that the positive bosonic contributions are primarily negative while the negative bosonic frequency contributions are primarily positive.  Interestingly, the summations over $\Omega>0$ and $\Omega<0$ show almost no momentum dependence.  All of the momentum dependence comes from $\Omega=0$ excitations which provide a slightly more negative contribution to $\Delta \Sigma_{AN}$ than for $\Delta \Sigma_N$. Further, the only positive contributions to $\Delta \Sigma$ come from the summation over $\Omega<0$.  Thus, deciding if $\Delta \Sigma$ is positive or negative rests on a subtle interplay between these three components.   This is an element not mentioned in the original fluctuation diagnostics description.\cite{gunnarsson:2015} 
 
 We explore also the doping dependence wherein we select a specific range of densities for which expect $\Delta \Sigma$ to switch sign. 
 Results for $n=0.94, 1.0,$ and 1.1 are displayed in Fig.~\ref{fig:fluct_DMFT_muvary} for $\Delta \Sigma^{(\Omega)}(q_x,q_y)$ which includes the total bosonic contributions at each $q_x$ and $q_y$ value.  
@@ -203,18 +213,13 @@ Finally, from the original fluctuation diagnostics work\cite{gunnarsson:2015} we
 
 
 
-\begin{figure}
-\centering
-    \includegraphics[width=0.68\linewidth]{c_mu_0_sigma_AN_nu1.pdf}
-    \includegraphics[width=0.68\linewidth]{c_mu_0_sigma_node_nu1.pdf}
-\caption{ Imaginary part of the self energy for the antinodal (left) and nodal (right) momenta decomposed into the scattering $q=(q_x,q_y)$ contributions for the zeroth bosonic Matsubara freq for $U/t=5.6$, $\beta t =5$, $t^\prime /t=-0.3$, and $\mu=0$.\label{fig:qxqyomega0} }
-\end{figure} 
 
 
 \begin{figure}
 \centering
-       \includegraphics[width=0.95\linewidth]{self_energy.pdf}
-        \caption{\label{fig:posnegbose} The imaginary part of the single particle self energy and its  $+\Omega$ and $-\Omega$ contributions ($Im\Sigma^{(+\Omega,q)}$ and $Im\Sigma^{(-\Omega,q)}$ respectively) at $U/t=5.6$, $\beta t =5$, $t^\prime /t=-0.3$, and $\mu=0$. }
+      % \includegraphics[width=0.95\linewidth]{self_energy.pdf}
+       \includegraphics[width=0.95\linewidth]{self_energy_W0.pdf}
+        \caption{\label{fig:posnegbose} The imaginary part of the single particle self energy from Fig.~\ref{fig:selfedmft} deconstructed into its  $+\Omega$ and $-\Omega$ contributions and the $\Omega=0$ contribution at $U/t=5.6$, $\beta t =5$, $t^\prime /t=-0.3$, and $\mu=0$. }
 \end{figure}
 
 
@@ -243,6 +248,12 @@ Finally, from the original fluctuation diagnostics work\cite{gunnarsson:2015} we
 
 
 
+
+    
+
+
+\subsection{Temperature Dependence at Weak-Coupling}
+
 \begin{figure}
 \centering
     \includegraphics[width=0.95\linewidth]{deltasigma_cor.pdf}
@@ -251,21 +262,11 @@ Finally, from the original fluctuation diagnostics work\cite{gunnarsson:2015} we
 
 \begin{figure}
 \centering
-    % \includegraphics[width=0.3\linewidth]{deltaS_AN_12.pdf} 
-    % \includegraphics[width=0.3\linewidth]{deltaS_node_12.pdf} 
-    % \includegraphics[width=0.3\linewidth]{deltasigmaN_cut12.pdf}
-    % \includegraphics[width=0.3\linewidth]{deltaS_AN_16.pdf} 
-    % \includegraphics[width=0.3\linewidth]{deltaS_node_16.pdf} 
-    %  \includegraphics[width=0.3\linewidth]{deltasigmaAN_cut_16.pdf}
-     \includegraphics[width=\linewidth]{fig8.pdf}
-        \caption{ \label{fig:lowt2}$\Delta \Sigma_{N/AN}^{\Omega} (q_x,q_y)$  values for $U/t=2$, $t^{\prime}=0$ $\mu=0$ for temperatures $T/t=0.08$ (top row) and $T/t=0.06$ (bottom row).  
-        %Values for  $\Delta \Sigma_{AN}$  and $\Delta \Sigma_N$ at $(q_x,q_y)=(\pi, \pi)$ are  -4.545e-03, -5.077e-03 respectively, and for T=0.06 $\Delta \Sigma_{AN}$ and $\Delta \Sigma_{N}$ are -2.5398e-02, -2.7808e-02
+        \includegraphics[width=\linewidth]{fig8.pdf}
+        \caption{ \label{fig:lowt2}$\Delta \Sigma_{N/AN}^{\Omega} (q_x,q_y)$  values for $U/t=2$, $t^{\prime}=0$ $\mu=0$ for temperatures $T/t=0.08$ (top row) and $T/t=0.06$ (bottom row). Right handle column shows cuts of $\Delta \Sigma^{(\Omega)}(q_x,q_y)$ for $q_y=\pi$ as a function of $q_x$.
         }
     \end{figure}
-    
 
-
-\subsection{Temperature Dependence at Weak-Coupling}
 In this section we target the half-filled, particle-hole symmetric case at weak coupling.  We examine the $\beta t$ dependence for parameters $U/t=2$, $t^\prime=0$, and $\mu=0$ for which results are shown in Fig.~\ref{fig:lowt} for $\beta t=10 \to 20$. 
 At $\beta t=10$ $\Delta \Sigma$ is positive for both nodal and antinodal momenta and its value decreases with decreasing temperature.
  We find that $\Delta\Sigma$ changes sign at sufficiently low temperature, $T/t\approx0.06$ for $\Delta \Sigma_N$ and at $T/t\approx0.065$ for $\Delta \Sigma_{AN}$ which we estimate from the linear interpolation of Fig.~\ref{fig:lowt}.  
@@ -277,12 +278,12 @@ As was done for doping dependent results, we show the decomposed quantities in F
 
 \section{Concluding Remarks \label{sec:conclusions}} 
 
- We examined the doping dependence at high temperature of $\Delta \Sigma$ and of the correlation length scale and found that $\Delta \Sigma$ mimics the antiferromagnetic correlation length $\xi$ both with doping at fixed temperature and with temperature at fixed doping.
+ We examined the doping dependence at high temperature of $\Delta \Sigma$ and of the correlation length scale and found that $\Delta \Sigma$ mimics the antiferromagnetic correlation length $\xi$ both with doping at fixed temperature and with temperature at fixed doping.  We observe that the tendency towards nFL behavior is nearly equivalent for both densities above and below half-filling even at high temperature.  Such an observation may have important implications for studies of electron doped high-Tc materials where pseudogaps have been observed.\cite{yamada:2005,damascelli:2018}
 To strengthen this connection we performed a fluctuation diagnostic decomposition of the self energy $\Delta \Sigma$ to show that the negative (nFL) contributions are primarily near $(\pi,\pi)$ for doping close to half-filled which suggests they are AFM in origin.  Contributions for $q$-vectors away from $(\pi,\pi)$ are expected for doped cases, and within the framework of fluctuation diagnostics, the observation of sharp features suggests that spin excitations remain a good basis for representing the fundamental excitations responsible for the nFL behavior for weakly doped systems in the single band model.\cite{gunnarsson:2015}
  We examine as well the weak coupling regime $U/t=2$ and find a magnetically driven FL/nFL crossover  at finite temperature in agreement with Ref.~\onlinecite{simkovic:2019}.
 The result is a non-trivial finite correlation length that non-the-less leads to non-Fermi-liquid behaviour.   The physics of the interaction driven Mott-transition underneath this nFL/quasi-AFM state remains unknown.
 One possibility is that the quasi-AFM state gaps the system and preempts the Mott transition from occurring.  However, it might be that both physical processes occur leading to a Mott-transition from a quasi-AFM insulating phase to a Mott insulating phase, or that both effects coincide. 
-With this in mind, further exploration to show the role of other metrics of the 1st order Mott transition might be valuable.  For example, the hysteresis in the double occupancy or Green's function, $G(\tau=\beta/2)$, for which recent work suggests that small cDMFT clusters capture correct physics.\cite{vanloon:2018:hysteresis,park:2008}   
+With this in mind, further exploration to show the role of other metrics of the 1st order Mott transition might be valuable.  For example, the hysteresis in the double occupancy or Green's function, $\beta G(\tau=\beta/2)$, for which recent work suggests that small cDMFT clusters capture correct physics.\cite{vanloon:2018:hysteresis,park:2008}   
 Finally, gaining a physical intuition into which particular $q-$vectors are responsible for metallic or insulating behaviour might allow one to construct simple effective models of complex systems.  Further study to remove the approximations inherent with the self-consistent ladder DF method may also be fruitful, such as including higher order vertex functions when constructing the dual self energy which appear to have a small but non-zero effect on $\Delta \Sigma$.\cite{ribic:2017}
 
 
